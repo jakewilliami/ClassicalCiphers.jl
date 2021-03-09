@@ -2,9 +2,6 @@ _keystr_to_dict(keystr::AbstractString) =
     Dict{Char, Char}(Char(i + 64) => c for (i, c) in enumerate(uppercase(keystr)))
 _keystr_to_dict(A::AbstractString, B::AbstractString) =
     Dict{eltype(A), eltype(B)}(a => b for (a, b) in zip(uppercase(A), uppercase(B))) # policy decision: all dictionaries are uppercase
-# function _keystr_to_dict(keystr::AbstractString)
-  # Dict{Char, Char}(map(x -> (Char(x[1]+64), x[2]), enumerate(uppercase(keystr))))
-# end
 
 Base.reverse(D::Dict{T, S}) where {T, S} =
     Dict{S, T}(reverse(p) for p in D)
